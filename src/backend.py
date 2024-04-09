@@ -56,9 +56,10 @@ class AuthenticationServer(threading.Thread):
     def __init__(self):
         super().__init__()
         self.path = ""
-        server_address = ('localhost', 8080)
+        server_address = ('localhost', 0)
         self.httpd = HTTPServer(server_address, AuthenticationHandler)
         self.port = self.httpd.server_port
+        logging.debug("DEV: Authentication server started on port %s", self.port)
 
     def run(self):
         self.httpd.serve_forever()
